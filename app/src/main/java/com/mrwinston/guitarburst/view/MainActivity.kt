@@ -16,10 +16,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
+        setContentView(view)
         if (savedInstanceState == null) {
             setupBottomNavigationBar()
         }
-        setContentView(view)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
@@ -28,8 +28,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupBottomNavigationBar() {
-        val navGraphIds = listOf(R.navigation.search)
-        val navController = findNavController(R.id.nav_host_fragment)
-        binding.bottomNavigation.setupWithNavController(navController)
+        binding.bottomNavigation.apply{
+            val navController = findNavController(R.id.nav_host_fragment)
+            setupWithNavController(navController)
+        }
     }
 }

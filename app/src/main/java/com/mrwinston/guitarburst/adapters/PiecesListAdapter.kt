@@ -8,14 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mrwinston.guitarburst.R
 import com.mrwinston.guitarburst.data.model.Piece
-import dagger.hilt.android.qualifiers.ApplicationContext
-import java.util.zip.Inflater
-import javax.inject.Inject
 
-class PiecesAdapter(private val context: Context, private var pieces: List<Piece>) :
-    RecyclerView.Adapter<PiecesAdapter.PieceViewHolder>() {
+class PiecesListAdapter(private val context: Context, private var pieces: List<Piece>) :
+    RecyclerView.Adapter<PiecesListAdapter.PieceViewHolder>() {
     class PieceViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
-        RecyclerView.ViewHolder(inflater.inflate(R.layout.piece, parent, false)) {
+        RecyclerView.ViewHolder(inflater.inflate(R.layout.piece_list_item, parent, false)) {
+
         private val titleView: TextView = itemView.findViewById(R.id.title)
         private val composerView: TextView = itemView.findViewById(R.id.composer)
 

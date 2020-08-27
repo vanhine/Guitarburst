@@ -12,13 +12,9 @@
         <action
             android:id="@+id/action_moveToSearchResults"
             app:destination="@id/resultsFragment" />
-        <action
-            android:id="@+id/action_moveToFavorites"
-            app:destination="@id/favoritesFragment" />
     </fragment>
     <fragment android:id="@+id/resultsFragment"
         android:name="com.mrwinston.guitarburst.view.ResultsFragment"
         android:label="resultsFragment"
         tools:layout="@layout/results_fragment"/>
-    <fragment android:id="@+id/favoritesFragment" />
 </navigation>

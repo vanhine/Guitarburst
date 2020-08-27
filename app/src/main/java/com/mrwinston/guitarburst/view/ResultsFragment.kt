@@ -10,14 +10,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mrwinston.guitarburst.R
-import com.mrwinston.guitarburst.adapters.PiecesAdapter
+import com.mrwinston.guitarburst.adapters.PiecesListAdapter
 import com.mrwinston.guitarburst.data.model.Piece
 import com.mrwinston.guitarburst.databinding.ResultsFragmentBinding
 import com.mrwinston.guitarburst.viewmodel.PiecesViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ResultsFragment: Fragment(R.layout.results_fragment) {
     private val piecesViewModel: PiecesViewModel by activityViewModels()
-    private lateinit var resultsAdapter: PiecesAdapter
+    private lateinit var resultsAdapter: PiecesListAdapter
     private val resultPieces: List<Piece> = emptyList()
 
     private var _binding: ResultsFragmentBinding? = null
@@ -64,7 +66,7 @@ class ResultsFragment: Fragment(R.layout.results_fragment) {
     private fun initRecyclerView() {
         binding.resultsRecycler.apply {
             layoutManager = LinearLayoutManager(context)
-            resultsAdapter = PiecesAdapter(context, resultPieces)
+            resultsAdapter = PiecesListAdapter(context, resultPieces)
             setHasFixedSize(true)
             adapter = resultsAdapter
         }
