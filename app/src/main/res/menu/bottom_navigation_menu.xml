@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/basic_search"
+        android:enabled="true"
+        android:icon="@drawable/basic_search_icon"
+        android:title="@string/basic_search_menu_text" />
+    <item
+        android:id="@+id/favorites"
+        android:enabled="false"
+        android:icon="@drawable/favorites_icon"
+        android:title="@string/favorites_search_menu_text" />
+</menu>

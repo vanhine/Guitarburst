@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/basicSearchFragment">
+    <fragment
+        android:id="@+id/basicSearchFragment"
+        android:name="com.mrwinston.guitarburst.view.BasicSearchFragment"
+        android:label="BasicSearchFragment"
+        tools:layout="@layout/basic_search_fragment">
+        <action
+            android:id="@+id/action_moveToSearchResults"
+            app:destination="@id/resultsFragment" />
+        <action
+            android:id="@+id/action_moveToFavorites"
+            app:destination="@id/favoritesFragment" />
+    </fragment>
+    <fragment android:id="@+id/resultsFragment"
+        android:name="com.mrwinston.guitarburst.view.ResultsFragment"
+        android:label="resultsFragment"
+        tools:layout="@layout/results_fragment"/>
+    <fragment android:id="@+id/favoritesFragment" />
+</navigation>
