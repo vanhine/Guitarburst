@@ -2,26 +2,30 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="64dp">
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="49dp"
-        android:layout_height="wrap_content"
-        android:text="Title"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Title of the Piece"
         android:textAppearance="@style/TitleList"
-        app:layout_constraintBottom_toTopOf="@id/composer"
+        android:gravity="bottom"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/composer"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Composer's Name"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:gravity="bottom"
+        android:text="Composer's name"
+        android:textAppearance="@style/ComposerList"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
