@@ -3,4 +3,5 @@
     <string name="basic_search_menu_text">Basic Search</string>
     <string name="favorites_search_menu_text">Favorites</string>
     <string name="search">Search</string>
+    <string name="filter_menu_text">Filter</string>
 </resources>

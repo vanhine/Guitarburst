@@ -12,6 +12,7 @@
         android:ems="10"
         android:inputType="text"
         android:hint="@string/search"
+        android:autofillHints="Search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/edit_button"
