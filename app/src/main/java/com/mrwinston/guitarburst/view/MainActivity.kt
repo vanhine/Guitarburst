@@ -2,6 +2,7 @@ package com.mrwinston.guitarburst.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mrwinston.guitarburst.R

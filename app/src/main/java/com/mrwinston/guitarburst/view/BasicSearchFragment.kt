@@ -29,10 +29,11 @@ class BasicSearchFragment: Fragment(R.layout.basic_search_fragment) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.editButton.setOnClickListener {
+        binding.searchButton.setOnClickListener {
             piecesViewModel.searchPieces(binding.searchEditText.text.toString())
             view.findNavController().navigate(R.id.action_moveToSearchResults)
         }
+        binding.chipGroup
         super.onViewCreated(view, savedInstanceState)
     }
 

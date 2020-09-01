@@ -4,4 +4,7 @@
     <string name="favorites_search_menu_text">Favorites</string>
     <string name="search">Search</string>
     <string name="filter_menu_text">Filter</string>
+    <string name="title">Title</string>
+    <string name="composer">Composer</string>
+    <string name="era">Era</string>
 </resources>
