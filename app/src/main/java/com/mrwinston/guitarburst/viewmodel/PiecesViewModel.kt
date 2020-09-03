@@ -13,13 +13,14 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class PiecesViewModel @ViewModelInject constructor(application: Application): AndroidViewModel(application) {
-    private val piecesRepository = PiecesRepository(application)
+class PiecesViewModel @ViewModelInject constructor(
+    private val piecesRepository: PiecesRepository,
+    application: Application): AndroidViewModel(application) {
 
     private val _piecesToDisplay = MutableLiveData<List<Piece>>()
     val piecesToDisplay: LiveData<List<Piece>> = _piecesToDisplay
 
-    private val _isLoading = MutableLiveData<Boolean>()
+    private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
     fun searchPieces(text: String) = viewModelScope.launch {
