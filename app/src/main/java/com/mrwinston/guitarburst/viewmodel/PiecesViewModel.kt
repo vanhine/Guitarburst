@@ -28,6 +28,6 @@ class PiecesViewModel @ViewModelInject constructor(
         val pieces = piecesRepository.getPieces(text)
         _piecesToDisplay.value = pieces
         _isLoading.value = false
-        Log.d("ViewModel", "Just got ${pieces.size} pieces")
+        //Log.d("ViewModel", "Just got ${pieces.size} pieces")
     }
 }
