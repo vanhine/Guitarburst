@@ -17,6 +17,7 @@ class PiecesRepository @Inject constructor(application: Application) {
         val db: PiecesDatabase? = PiecesDatabase.getDatabase(application)
         piecesDao = db!!.PiecesDao()
     }
+
     suspend fun getPieces(input: String): List<Piece> {
         return piecesDao.getPieces(input)
     }
