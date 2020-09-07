@@ -15,9 +15,6 @@ interface PiecesDao {
     @Query("DELETE FROM pieces_table")
     fun deleteAllPieces()
 
-    @Query("SELECT * from pieces_table")
-    fun getAllPieces(): LiveData<List<Piece>>
-
     @Query("Select * from pieces_table where title like '%' || :input || '%' OR composer like '%' || :input || '%'")
     suspend fun getPieces(input: String): List<Piece>
 }

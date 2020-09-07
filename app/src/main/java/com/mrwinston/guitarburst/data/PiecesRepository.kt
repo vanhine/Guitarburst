@@ -12,16 +12,10 @@ import javax.inject.Inject
 
 class PiecesRepository @Inject constructor(application: Application) {
     private var piecesDao: PiecesDao
-    private var allPieces: LiveData<List<Piece>>
 
     init {
         val db: PiecesDatabase? = PiecesDatabase.getDatabase(application)
         piecesDao = db!!.PiecesDao()
-        allPieces = piecesDao.getAllPieces()
-    }
-
-    fun getAllPieces(): LiveData<List<Piece>> {
-        return allPieces
     }
 
     suspend fun getPieces(input: String): List<Piece> {
