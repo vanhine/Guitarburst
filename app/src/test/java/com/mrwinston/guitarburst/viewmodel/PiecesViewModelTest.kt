@@ -5,6 +5,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
+import com.google.common.flogger.FluentLogger
 import com.google.common.truth.Truth.assertThat
 import com.mrwinston.guitarburst.data.PiecesRepository
 import com.mrwinston.guitarburst.data.model.Piece
@@ -27,25 +28,23 @@ import java.util.concurrent.TimeoutException
 
 @kotlinx.coroutines.ExperimentalCoroutinesApi
 class PiecesViewModelTest {
-
-    @get:Rule
-    val rule = InstantTaskExecutorRule()
+    @get:Rule val rule = InstantTaskExecutorRule()
 
     private val testCoroutineDispatcher = TestCoroutineDispatcher()
-
     private val testCoroutineScope = TestCoroutineScope(testCoroutineDispatcher)
     private val mainThreadSurrogate = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
 
-    @Before
-    fun setUp() {
+    private val mockPiecesRepository: PiecesRepository = mock()
+    private val mockApplication: Application = mock()
+    private lateinit var flogger: FluentLogger
+
+    @Before fun setUp() {
         Dispatchers.setMain(mainThreadSurrogate)
+        flogger = FluentLogger.forEnclosingClass()
     }
 
-    @Test
-    fun searchPieces_setsPiecesToDisplay() = testCoroutineScope.runBlockingTest {
-        val mockPiecesRepository: PiecesRepository = mock()
-        val mockApplication: Application = mock()
-        val viewModel = PiecesViewModel(mockPiecesRepository, mockApplication)
+    @Test fun searchPieces_setsPiecesToDisplay() = testCoroutineScope.runBlockingTest {
+        val viewModel = PiecesViewModel(flogger, mockPiecesRepository, mockApplication)
         val resultPiece1 = Piece(
             0,
             "Fake Title",
@@ -82,18 +81,14 @@ class PiecesViewModelTest {
         assertThat(actualResults.size).isEqualTo(2)
     }
 
-    @Test
-    fun searchPieces_sets_isLoading() = testCoroutineScope.runBlockingTest {
-        val mockPiecesRepository: PiecesRepository = mock()
-        val mockApplication: Application = mock()
-        val viewModel = PiecesViewModel(mockPiecesRepository, mockApplication)
+    @Test fun searchPieces_sets_isLoading() = testCoroutineScope.runBlockingTest {
+        val viewModel = PiecesViewModel(flogger, mockPiecesRepository, mockApplication)
         viewModel.isLoading.observeForever { }
         viewModel.searchPieces("Adam")
         assertThat(viewModel.isLoading.value).isFalse()
     }
 
-    @After
-    fun tearDown() {
+    @After fun tearDown() {
         Dispatchers.resetMain()
         mainThreadSurrogate.close()
     }
