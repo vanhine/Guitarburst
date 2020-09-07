@@ -6,11 +6,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.common.flogger.FluentLogger
 import com.mrwinston.guitarburst.R
 import com.mrwinston.guitarburst.data.model.Piece
+import javax.inject.Inject
 
 class PiecesListAdapter(private val context: Context, private var pieces: List<Piece>) :
     RecyclerView.Adapter<PiecesListAdapter.PieceViewHolder>() {
+
+    private val logger = FluentLogger.forEnclosingClass()
+
     class PieceViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.piece_list_item, parent, false)) {
 
@@ -24,7 +29,7 @@ class PiecesListAdapter(private val context: Context, private var pieces: List<P
     }
 
     fun setPieces(inbound_pieces: List<Piece>) {
-        Log.d("Adapter", "returning ${inbound_pieces.size} pieces")
+        logger.atInfo().log("returning ${inbound_pieces.size} pieces")
         pieces = inbound_pieces
         notifyDataSetChanged()
     }

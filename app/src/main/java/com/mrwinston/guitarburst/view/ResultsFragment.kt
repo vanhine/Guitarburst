@@ -9,12 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.common.flogger.FluentLogger
 import com.mrwinston.guitarburst.R
 import com.mrwinston.guitarburst.adapters.PiecesListAdapter
 import com.mrwinston.guitarburst.data.model.Piece
 import com.mrwinston.guitarburst.databinding.ResultsFragmentBinding
 import com.mrwinston.guitarburst.viewmodel.PiecesViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ResultsFragment: Fragment(R.layout.results_fragment) {
@@ -25,6 +27,8 @@ class ResultsFragment: Fragment(R.layout.results_fragment) {
     private var _binding: ResultsFragmentBinding? = null
     // Only available between onCreateView and onDestroyView
     private val binding get() = _binding!!
+
+    private val logger = FluentLogger.forEnclosingClass()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,7 +50,7 @@ class ResultsFragment: Fragment(R.layout.results_fragment) {
         }
         piecesViewModel.isLoading.observe(viewLifecycleOwner, loadingObserver)
         val resultsObserver = Observer<List<Piece>> { results ->
-            Log.d("ResultsFragment", "Observer setting results for ${results.size} pieces")
+            logger.atInfo().log("Observer setting results for ${results.size} pieces")
             resultsAdapter.setPieces(results)
         }
         piecesViewModel.piecesToDisplay.observe(viewLifecycleOwner, resultsObserver)
