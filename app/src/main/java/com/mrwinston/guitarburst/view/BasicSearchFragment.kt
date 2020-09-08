@@ -7,17 +7,21 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import com.google.android.material.chip.ChipGroup
+import com.google.common.flogger.FluentLogger
 import com.mrwinston.guitarburst.R
 import com.mrwinston.guitarburst.databinding.BasicSearchFragmentBinding
 import com.mrwinston.guitarburst.viewmodel.PiecesViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BasicSearchFragment: Fragment(R.layout.basic_search_fragment) {
+class BasicSearchFragment : Fragment(R.layout.basic_search_fragment) {
     private val piecesViewModel: PiecesViewModel by activityViewModels()
     private var _binding: BasicSearchFragmentBinding? = null
+
     // Only available between onCreateView and onDestroyView
     private val binding get() = _binding!!
+    private val logger = FluentLogger.forEnclosingClass()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,16 +33,34 @@ class BasicSearchFragment: Fragment(R.layout.basic_search_fragment) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setupSearchButton(view)
+        setupChipGroup()
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun setupSearchButton(view: View) {
         binding.searchButton.setOnClickListener {
-            piecesViewModel.searchPieces(binding.searchEditText.text.toString())
+            val searchText = binding.searchEditText.text.toString()
+            piecesViewModel.searchPieces(searchText)
             view.findNavController().navigate(R.id.action_moveToSearchResults)
         }
-        binding.chipGroup
-        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun setupChipGroup() {
+        binding.chipGroup.setOnCheckedChangeListener { _: ChipGroup, checkedId: Int ->
+            logger.atInfo().log("CheckedId: $checkedId")
+            when (checkedId) {
+                R.id.title_chip -> piecesViewModel.setCheckedCategory(PiecesViewModel.SearchCategory.TITLE)
+                R.id.composer_chip -> piecesViewModel.setCheckedCategory(PiecesViewModel.SearchCategory.COMPOSER)
+                R.id.era_chip -> piecesViewModel.setCheckedCategory(PiecesViewModel.SearchCategory.ERA)
+            }
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
+
 }

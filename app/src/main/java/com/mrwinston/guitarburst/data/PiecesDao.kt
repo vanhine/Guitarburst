@@ -17,4 +17,13 @@ interface PiecesDao {
 
     @Query("Select * from pieces_table where title like '%' || :input || '%' OR composer like '%' || :input || '%'")
     suspend fun getPieces(input: String): List<Piece>
+
+    @Query("select * from pieces_table where title like '%' || :title || '%'")
+    suspend fun getByTitle(title: String): List<Piece>
+
+    @Query("select * from pieces_table where title like '%' || :composer || '%'")
+    suspend fun getByComposer(composer: String): List<Piece>
+
+    @Query("select * from pieces_table where title like '%' || :era || '%'")
+    suspend fun getByEra(era: String): List<Piece>
 }

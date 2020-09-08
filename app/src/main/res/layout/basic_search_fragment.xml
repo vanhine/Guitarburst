@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <EditText
         android:id="@+id/search_edit_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="text"
-        android:hint="@string/search"
+        android:layout_height="45dp"
         android:autofillHints="Search"
+        android:ems="10"
+        android:hint="@string/search"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/search_guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/chip_group"
-        app:layout_constraintTop_toTopOf="parent"/>
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chip_group"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:singleSelection="true"
-        app:layout_constraintBottom_toTopOf="@id/search_button"
+        android:layout_height="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/search_edit_text">
+        app:layout_constraintTop_toBottomOf="@id/search_edit_text"
+        app:singleSelection="true"
+        app:selectionRequired="true">
+
         <com.google.android.material.chip.Chip
             android:id="@+id/title_chip"
             android:layout_width="wrap_content"
@@ -35,12 +35,14 @@
             android:checkable="true"
             android:checked="true"
             android:text="@string/title" />
+
         <com.google.android.material.chip.Chip
             android:id="@+id/composer_chip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checkable="true"
             android:text="@string/composer" />
+
         <com.google.android.material.chip.Chip
             android:id="@+id/era_chip"
             android:layout_width="wrap_content"
@@ -50,14 +52,21 @@
 
     </com.google.android.material.chip.ChipGroup>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/search_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="365dp" />
+
     <Button
         android:id="@+id/search_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/search"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chip_group"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/search_guideline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

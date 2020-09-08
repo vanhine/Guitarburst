@@ -22,4 +22,16 @@ class PiecesRepository @Inject constructor(application: Application) {
         return piecesDao.getPieces(input)
     }
 
+    suspend fun getByTitle(title: String): List<Piece> {
+        return piecesDao.getByTitle(title)
+    }
+
+    suspend fun getByComposer(composer: String): List<Piece> {
+        return piecesDao.getByTitle(composer)
+    }
+
+    suspend fun getByEra(era: String): List<Piece> {
+        return piecesDao.getByTitle(era)
+    }
+
 }
