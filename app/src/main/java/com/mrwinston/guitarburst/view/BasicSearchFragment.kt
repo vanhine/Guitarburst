@@ -21,7 +21,6 @@ class BasicSearchFragment : Fragment(R.layout.basic_search_fragment) {
 
     // Only available between onCreateView and onDestroyView
     private val binding get() = _binding!!
-    private val logger = FluentLogger.forEnclosingClass()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,11 +47,10 @@ class BasicSearchFragment : Fragment(R.layout.basic_search_fragment) {
 
     private fun setupChipGroup() {
         binding.chipGroup.setOnCheckedChangeListener { _: ChipGroup, checkedId: Int ->
-            logger.atInfo().log("CheckedId: $checkedId")
             when (checkedId) {
-                R.id.title_chip -> piecesViewModel.setCheckedCategory(PiecesViewModel.SearchCategory.TITLE)
-                R.id.composer_chip -> piecesViewModel.setCheckedCategory(PiecesViewModel.SearchCategory.COMPOSER)
-                R.id.era_chip -> piecesViewModel.setCheckedCategory(PiecesViewModel.SearchCategory.ERA)
+                R.id.title_chip -> piecesViewModel.checkedCategory = PiecesViewModel.SearchCategory.TITLE
+                R.id.composer_chip -> piecesViewModel.checkedCategory = PiecesViewModel.SearchCategory.COMPOSER
+                R.id.era_chip -> piecesViewModel.checkedCategory = PiecesViewModel.SearchCategory.ERA
             }
         }
     }

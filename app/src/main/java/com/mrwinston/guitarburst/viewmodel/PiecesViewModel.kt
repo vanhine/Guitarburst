@@ -26,11 +26,7 @@ class PiecesViewModel @ViewModelInject constructor(
     private val _isLoading = MutableLiveData<Boolean>(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private var checkedCategory = SearchCategory.TITLE
-
-    fun setCheckedCategory(category: SearchCategory) {
-        checkedCategory = category
-    }
+    var checkedCategory = SearchCategory.TITLE
 
     fun searchPieces(text: String) = viewModelScope.launch {
         _isLoading.value = true
@@ -41,7 +37,6 @@ class PiecesViewModel @ViewModelInject constructor(
         }
         _piecesToDisplay.value = pieces
         _isLoading.value = false
-        logger.atInfo().log("Just got ${pieces.size} pieces")
     }
 
     enum class SearchCategory {

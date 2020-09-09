@@ -27,11 +27,11 @@ class PiecesRepository @Inject constructor(application: Application) {
     }
 
     suspend fun getByComposer(composer: String): List<Piece> {
-        return piecesDao.getByTitle(composer)
+        return piecesDao.getByComposer(composer)
     }
 
     suspend fun getByEra(era: String): List<Piece> {
-        return piecesDao.getByTitle(era)
+        return piecesDao.getByEra(era)
     }
 
 }
