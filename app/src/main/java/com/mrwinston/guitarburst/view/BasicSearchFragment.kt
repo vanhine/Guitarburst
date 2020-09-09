@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.google.android.material.chip.ChipGroup
-import com.google.common.flogger.FluentLogger
 import com.mrwinston.guitarburst.R
 import com.mrwinston.guitarburst.databinding.BasicSearchFragmentBinding
 import com.mrwinston.guitarburst.viewmodel.PiecesViewModel
@@ -50,7 +49,6 @@ class BasicSearchFragment : Fragment(R.layout.basic_search_fragment) {
             when (checkedId) {
                 R.id.title_chip -> piecesViewModel.checkedCategory = PiecesViewModel.SearchCategory.TITLE
                 R.id.composer_chip -> piecesViewModel.checkedCategory = PiecesViewModel.SearchCategory.COMPOSER
-                R.id.era_chip -> piecesViewModel.checkedCategory = PiecesViewModel.SearchCategory.ERA
             }
         }
     }

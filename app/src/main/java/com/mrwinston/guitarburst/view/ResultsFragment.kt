@@ -1,7 +1,6 @@
 package com.mrwinston.guitarburst.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,6 @@ import com.mrwinston.guitarburst.data.model.Piece
 import com.mrwinston.guitarburst.databinding.ResultsFragmentBinding
 import com.mrwinston.guitarburst.viewmodel.PiecesViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ResultsFragment: Fragment(R.layout.results_fragment) {

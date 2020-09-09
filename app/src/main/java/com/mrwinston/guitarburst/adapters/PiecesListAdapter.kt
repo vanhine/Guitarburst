@@ -1,7 +1,6 @@
 package com.mrwinston.guitarburst.adapters
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.common.flogger.FluentLogger
 import com.mrwinston.guitarburst.R
 import com.mrwinston.guitarburst.data.model.Piece
-import javax.inject.Inject
 
 class PiecesListAdapter(private val context: Context, private var pieces: List<Piece>) :
     RecyclerView.Adapter<PiecesListAdapter.PieceViewHolder>() {

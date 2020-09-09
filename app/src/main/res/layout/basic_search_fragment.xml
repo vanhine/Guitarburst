@@ -43,13 +43,6 @@
             android:checkable="true"
             android:text="@string/composer" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/era_chip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checkable="true"
-            android:text="@string/era" />
-
     </com.google.android.material.chip.ChipGroup>
 
     <androidx.constraintlayout.widget.Guideline

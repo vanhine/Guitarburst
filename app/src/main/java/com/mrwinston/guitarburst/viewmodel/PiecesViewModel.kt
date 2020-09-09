@@ -1,7 +1,6 @@
 package com.mrwinston.guitarburst.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
@@ -10,10 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.common.flogger.FluentLogger
 import com.mrwinston.guitarburst.data.PiecesRepository
 import com.mrwinston.guitarburst.data.model.Piece
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class PiecesViewModel @ViewModelInject constructor(
     private val logger: FluentLogger,
@@ -33,13 +29,12 @@ class PiecesViewModel @ViewModelInject constructor(
         val pieces = when(checkedCategory) {
             SearchCategory.TITLE -> piecesRepository.getByTitle(text)
             SearchCategory.COMPOSER -> piecesRepository.getByComposer(text)
-            SearchCategory.ERA -> piecesRepository.getByEra(text)
         }
         _piecesToDisplay.value = pieces
         _isLoading.value = false
     }
 
     enum class SearchCategory {
-        TITLE, COMPOSER, ERA
+        TITLE, COMPOSER
     }
 }
