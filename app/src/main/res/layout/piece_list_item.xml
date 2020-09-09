@@ -6,13 +6,17 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="28dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:text="Title of the Piece"
-        android:textAppearance="@style/TitleList"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:gravity="bottom"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textAppearance="@style/TitleList"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,7 +27,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:gravity="bottom"
-        android:text="Composer's name"
         android:textAppearance="@style/ComposerList"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
