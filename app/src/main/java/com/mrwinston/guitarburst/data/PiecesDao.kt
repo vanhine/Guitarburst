@@ -1,7 +1,5 @@
 package com.mrwinston.guitarburst.data
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -17,4 +15,10 @@ interface PiecesDao {
 
     @Query("Select * from pieces_table where title like '%' || :input || '%' OR composer like '%' || :input || '%'")
     suspend fun getPieces(input: String): List<Piece>
+
+    @Query("select * from pieces_table where title like '%' || :title || '%'")
+    suspend fun getByTitle(title: String): List<Piece>
+
+    @Query("select * from pieces_table where composer like '%' || :composer || '%'")
+    suspend fun getByComposer(composer: String): List<Piece>
 }

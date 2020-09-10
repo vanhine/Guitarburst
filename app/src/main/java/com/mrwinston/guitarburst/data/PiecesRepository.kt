@@ -1,13 +1,7 @@
 package com.mrwinston.guitarburst.data
 
 import android.app.Application
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.room.Room
 import com.mrwinston.guitarburst.data.model.Piece
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import javax.inject.Inject
 
 class PiecesRepository @Inject constructor(application: Application) {
@@ -22,4 +16,11 @@ class PiecesRepository @Inject constructor(application: Application) {
         return piecesDao.getPieces(input)
     }
 
+    suspend fun getByTitle(title: String): List<Piece> {
+        return piecesDao.getByTitle(title)
+    }
+
+    suspend fun getByComposer(composer: String): List<Piece> {
+        return piecesDao.getByComposer(composer)
+    }
 }
