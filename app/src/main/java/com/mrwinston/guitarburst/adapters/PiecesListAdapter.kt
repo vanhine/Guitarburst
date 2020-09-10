@@ -6,12 +6,18 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.common.flogger.FluentLogger
 import com.mrwinston.guitarburst.R
 import com.mrwinston.guitarburst.data.model.Piece
+import com.mrwinston.guitarburst.viewmodel.PiecesViewModel
 
-class PiecesListAdapter(private val context: Context, private var pieces: List<Piece>) :
+class PiecesListAdapter(
+    private val context: Context,
+    private var pieces: List<Piece>,
+    private val piecesViewModel: PiecesViewModel
+) :
     RecyclerView.Adapter<PiecesListAdapter.PieceViewHolder>() {
 
     private val logger = FluentLogger.forEnclosingClass()
@@ -53,6 +59,10 @@ class PiecesListAdapter(private val context: Context, private var pieces: List<P
 
     override fun onBindViewHolder(holder: PieceViewHolder, position: Int) {
         val piece: Piece = pieces[position]
+        holder.itemView.setOnClickListener {
+            piecesViewModel.resultPiece = piece
+            it.findNavController().navigate(R.id.action_moveToPieceInfoFragment)
+        }
         holder.bind(piece)
     }
 }

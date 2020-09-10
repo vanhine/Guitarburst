@@ -68,7 +68,7 @@ class ResultsFragment: Fragment(R.layout.results_fragment) {
     private fun initRecyclerView() {
         binding.resultsRecycler.apply {
             layoutManager = LinearLayoutManager(context)
-            resultsAdapter = PiecesListAdapter(context, resultPieces)
+            resultsAdapter = PiecesListAdapter(context, resultPieces, piecesViewModel)
             setHasFixedSize(true)
             adapter = resultsAdapter
         }

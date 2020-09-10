@@ -13,8 +13,18 @@
             android:id="@+id/action_moveToSearchResults"
             app:destination="@id/resultsFragment" />
     </fragment>
-    <fragment android:id="@+id/resultsFragment"
+    <fragment
+        android:id="@+id/resultsFragment"
         android:name="com.mrwinston.guitarburst.view.ResultsFragment"
         android:label="resultsFragment"
-        tools:layout="@layout/results_fragment"/>
+        tools:layout="@layout/results_fragment">
+        <action
+            android:id="@+id/action_moveToPieceInfoFragment"
+            app:destination="@id/pieceInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pieceInfoFragment"
+        android:name="com.mrwinston.guitarburst.view.PieceInfoFragment"
+        android:label="pieceInfoFragment"
+        tools:layout="@layout/piece_info_fragment" />
 </navigation>

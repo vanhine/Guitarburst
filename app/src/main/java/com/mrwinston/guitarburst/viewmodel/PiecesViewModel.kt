@@ -24,9 +24,11 @@ class PiecesViewModel @ViewModelInject constructor(
 
     var checkedCategory = SearchCategory.TITLE
 
+    var resultPiece: Piece? = null
+
     fun searchPieces(text: String) = viewModelScope.launch {
         _isLoading.value = true
-        val pieces = when(checkedCategory) {
+        val pieces = when (checkedCategory) {
             SearchCategory.TITLE -> piecesRepository.getByTitle(text)
             SearchCategory.COMPOSER -> piecesRepository.getByComposer(text)
         }

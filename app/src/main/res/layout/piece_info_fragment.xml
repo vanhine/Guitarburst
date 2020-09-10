@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Recuerdos de la Alhambra"
+        app:layout_constraintBottom_toTopOf="@id/composer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/composer"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Francisco Tarrega"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <TextView
+        android:id="@+id/difficulty_title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Difficulty:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/composer"
+        app:layout_constraintEnd_toStartOf="@id/difficulty" />
+
+    <TextView
+        android:id="@+id/difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="10"
+        app:layout_constraintStart_toEndOf="@id/difficulty_title"
+        app:layout_constraintTop_toBottomOf="@id/composer" />
+
+    <TextView
+        android:id="@+id/reading_title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Reading Difficulty:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/difficulty_title"
+        app:layout_constraintEnd_toStartOf="@id/reading" />
+
+    <TextView
+        android:id="@+id/reading"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="10"
+        app:layout_constraintStart_toEndOf="@id/reading_title"
+        app:layout_constraintTop_toBottomOf="@id/difficulty" />
+
+    <TextView
+        android:id="@+id/position_title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Position:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reading_title"
+        app:layout_constraintEnd_toStartOf="@id/position" />
+
+    <TextView
+        android:id="@+id/position"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="XI"
+        app:layout_constraintStart_toEndOf="@id/position_title"
+        app:layout_constraintTop_toBottomOf="@id/reading" />
+
+    <TextView
+        android:id="@+id/duration_title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Duration:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/position_title"
+        app:layout_constraintEnd_toStartOf="@id/duration" />
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="medium"
+        app:layout_constraintStart_toEndOf="@id/duration_title"
+        app:layout_constraintTop_toBottomOf="@id/position" />
+
+    <TextView
+        android:id="@+id/era_title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Era:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/duration_title"
+        app:layout_constraintEnd_toStartOf="@id/era" />
+
+    <TextView
+        android:id="@+id/era"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Baroque"
+        app:layout_constraintStart_toEndOf="@id/era_title"
+        app:layout_constraintTop_toBottomOf="@id/duration" />
+
+    <TextView
+        android:id="@+id/source_title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Source:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/era_title"
+        app:layout_constraintEnd_toStartOf="@id/source" />
+
+    <TextView
+        android:id="@+id/source"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Mel Bay Something Book"
+        app:layout_constraintStart_toEndOf="@id/source_title"
+        app:layout_constraintTop_toBottomOf="@id/era" />
+
+    <TextView
+        android:id="@+id/publisher_title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Publisher:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/source_title"
+        app:layout_constraintEnd_toStartOf="@id/publisher" />
+
+    <TextView
+        android:id="@+id/publisher"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Mel Bay"
+        app:layout_constraintStart_toEndOf="@id/publisher_title"
+        app:layout_constraintTop_toBottomOf="@id/source" />
+
+    <TextView
+        android:id="@+id/notes_title"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Notes:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/publisher_title" />
+
+    <TextView
+        android:id="@+id/notes"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="Some Really long notes"
+        android:maxLines="10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/notes_title" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
