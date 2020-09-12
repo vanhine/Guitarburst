@@ -3,6 +3,7 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="medium_emphasis">#99FFFFFF</color>
     <!-- TODO(hine): Remove unused color resources -->
     <color name="red_50">#FFEBEE</color>
     <color name="red_100">#FFCDD2</color>

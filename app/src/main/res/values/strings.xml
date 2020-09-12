@@ -7,4 +7,12 @@
     <string name="title">Title</string>
     <string name="composer">Composer</string>
     <string name="era">Era</string>
+    <string-array name="era_dropdown_array">
+        <item>Modern</item>
+        <item>Romantic</item>
+        <item>Classical</item>
+        <item>Baroque</item>
+        <item>Renaissance</item>
+        <item>Traditional</item>
+    </string-array>
 </resources>
