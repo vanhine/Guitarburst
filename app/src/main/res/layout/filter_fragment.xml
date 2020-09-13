@@ -53,6 +53,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
+        android:valueFrom="0"
+        android:valueTo="20"
+        android:stepSize="1"
+        app:tickColor="@color/purple_900"
         app:layout_constraintTop_toBottomOf="@id/difficulty_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

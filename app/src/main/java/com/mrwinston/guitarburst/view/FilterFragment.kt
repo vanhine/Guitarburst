@@ -1,5 +1,7 @@
 package com.mrwinston.guitarburst.view
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,6 +33,21 @@ class FilterFragment : Fragment(R.layout.filter_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupEraDropdown()
+        binding.difficultySlider.addOnChangeListener { slider, value, fromUser ->
+            when (value.toInt()) {
+                in 0..5 -> {
+                    slider.thumbTintList = ColorStateList.valueOf(Color.GREEN)
+                    slider.trackTintList = ColorStateList.valueOf(Color.GREEN)
+                    slider.tickTintList = ColorStateList.valueOf(Color.GREEN)
+                }
+                in 5..10 -> {
+                    slider.thumbTintList = ColorStateList.valueOf(Color.YELLOW)
+                    slider.trackTintList = ColorStateList.valueOf(Color.YELLOW)
+                    slider.tickTintList = ColorStateList.valueOf(Color.YELLOW)
+                }
+
+            }
+        }
     }
 
     private fun setupEraDropdown() {
