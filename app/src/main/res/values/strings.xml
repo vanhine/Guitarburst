@@ -6,7 +6,9 @@
     <string name="filter_menu_text">Filter</string>
     <string name="title">Title</string>
     <string name="composer">Composer</string>
-    <string name="era">Era</string>
+    <string name="filter_era_title">Era:</string>
+    <string name="difficulty">Difficulty:</string>
+    <string name="filter_title_text">Filter:</string>
     <string-array name="era_dropdown_array">
         <item>Modern</item>
         <item>Romantic</item>
