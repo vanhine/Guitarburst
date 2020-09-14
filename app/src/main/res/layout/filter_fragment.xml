@@ -46,17 +46,19 @@
         app:layout_constraintTop_toBottomOf="@id/era_title"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.slider.Slider
+    <com.google.android.material.slider.RangeSlider
         android:id="@+id/difficulty_slider"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
-        android:valueFrom="0"
+        android:valueFrom="1"
         android:valueTo="20"
         android:stepSize="1"
-        app:tickColor="@color/purple_900"
+        app:trackColorActive="@color/easy_difficulty_primary"
+        app:thumbColor="@color/easy_difficulty_primary"
+        app:trackColorInactive="@color/easy_difficulty_secondary"
         app:layout_constraintTop_toBottomOf="@id/difficulty_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
