@@ -21,4 +21,12 @@ interface PiecesDao {
 
     @Query("select * from pieces_table where composer like '%' || :composer || '%'")
     suspend fun getByComposer(composer: String): List<Piece>
+
+    @Query("select * from pieces_table where era like '%' || :era || '%' AND duration like '%' || :length || '%' AND difficulty BETWEEN :minDifficulty AND :maxDifficulty")
+    suspend fun getByFilter(
+        era: String,
+        length: String,
+        minDifficulty: Int,
+        maxDifficulty: Int
+    ): List<Piece>
 }

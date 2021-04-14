@@ -35,5 +35,9 @@
         android:id="@+id/filter_fragment"
         android:name="com.mrwinston.guitarburst.view.FilterFragment"
         android:label="filterFragment"
-        tools:layout="@layout/filter_fragment" />
+        tools:layout="@layout/filter_fragment">
+        <action
+            android:id="@+id/action_moveToSearchResults"
+            app:destination="@id/results_fragment" />
+    </fragment>
 </navigation>

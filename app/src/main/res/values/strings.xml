@@ -21,9 +21,9 @@
     <string-array name="length_dropdown_array">
         <item>Any</item>
         <item>Short</item>
-        <item>Medium short</item>
+        <item>Medium-short</item>
         <item>Medium</item>
-        <item>Medium long</item>
+        <item>Medium-long</item>
         <item>Long</item>
         <item>Very long</item>
     </string-array>

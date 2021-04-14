@@ -39,6 +39,25 @@ class PiecesViewModel @Inject constructor(
         _isLoading.value = false
     }
 
+    fun filterPieces(filter: PiecesFilter) = viewModelScope.launch {
+        _isLoading.value = true
+        val pieces = piecesRepository.getByFilter(
+            filter.era,
+            filter.length,
+            filter.minDifficulty,
+            filter.maxDifficulty
+        )
+        _piecesToDisplay.value = pieces
+        _isLoading.value = false
+    }
+
+    data class PiecesFilter(
+        val era: String,
+        val length: String,
+        val minDifficulty: Int,
+        val maxDifficulty: Int
+    )
+
     enum class SearchCategory {
         TITLE, COMPOSER
     }

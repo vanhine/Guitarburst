@@ -23,4 +23,13 @@ class PiecesRepository @Inject constructor(application: Application) {
     suspend fun getByComposer(composer: String): List<Piece> {
         return piecesDao.getByComposer(composer)
     }
+
+    suspend fun getByFilter(
+        era: String,
+        length: String,
+        minDifficulty: Int,
+        maxDifficulty: Int
+    ): List<Piece> {
+        return piecesDao.getByFilter(era, length, minDifficulty, maxDifficulty)
+    }
 }

@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import com.google.android.material.slider.RangeSlider
 import com.mrwinston.guitarburst.R
 import com.mrwinston.guitarburst.databinding.FilterFragmentBinding
@@ -36,11 +37,24 @@ class FilterFragment : Fragment(R.layout.filter_fragment) {
         setupEraDropdown()
         setupDifficultySlider()
         setupLengthDropdown()
+        setupSearchButton(view)
+    }
+
+    private fun setupSearchButton(view: View) {
+        binding.searchButton.setOnClickListener {
+            val era = binding.eraSpinner.selectedItem.toString()
+            val length = binding.lengthSpinner.selectedItem.toString()
+            val difficultyList = binding.difficultySlider.values
+            val (minDifficulty, maxDifficulty) = getMinMaxDifficulty(difficultyList)
+            val filter = PiecesViewModel.PiecesFilter(era, length, minDifficulty, maxDifficulty)
+            piecesViewModel.filterPieces(filter)
+            view.findNavController().navigate(R.id.action_moveToSearchResults)
+        }
     }
 
     private fun setupDifficultySlider() {
         binding.difficultySlider.values = mutableListOf(1F, 20F)
-        binding.difficultySlider.addOnChangeListener { slider, value, fromUser ->
+        binding.difficultySlider.addOnChangeListener { slider, value, _ ->
             val (primaryColor, secondaryColor) = getSliderColors(value)
             setSliderColors(slider, primaryColor, secondaryColor)
             slider.setLabelFormatter {
@@ -48,6 +62,13 @@ class FilterFragment : Fragment(R.layout.filter_fragment) {
                 "$labelString\n$it"
             }
         }
+    }
+
+    private fun getMinMaxDifficulty(difficultyList: List<Float>): Pair<Int, Int> {
+        if (difficultyList.size == 2) {
+            return Pair(difficultyList[0].toInt(), difficultyList[1].toInt())
+        }
+        return Pair(1, 20)
     }
 
     private fun getSliderColors(value: Float): Pair<Int, Int> {
