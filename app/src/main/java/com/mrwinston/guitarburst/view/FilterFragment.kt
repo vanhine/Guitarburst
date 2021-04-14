@@ -35,10 +35,11 @@ class FilterFragment : Fragment(R.layout.filter_fragment) {
         super.onViewCreated(view, savedInstanceState)
         setupEraDropdown()
         setupDifficultySlider()
+        setupLengthDropdown()
     }
 
     private fun setupDifficultySlider() {
-        binding.difficultySlider.values = mutableListOf(1F, 5F)
+        binding.difficultySlider.values = mutableListOf(1F, 20F)
         binding.difficultySlider.addOnChangeListener { slider, value, fromUser ->
             val (primaryColor, secondaryColor) = getSliderColors(value)
             setSliderColors(slider, primaryColor, secondaryColor)
@@ -110,6 +111,17 @@ class FilterFragment : Fragment(R.layout.filter_fragment) {
         ).also { adapter ->
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             binding.eraSpinner.adapter = adapter
+        }
+    }
+
+    private fun setupLengthDropdown() {
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.length_dropdown_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            binding.lengthSpinner.adapter = adapter
         }
     }
 }
