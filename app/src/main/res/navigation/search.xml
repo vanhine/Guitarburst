@@ -31,7 +31,6 @@
         android:name="com.mrwinston.guitarburst.view.PieceInfoFragment"
         android:label="pieceInfoFragment"
         tools:layout="@layout/piece_info_fragment" />
-
     <fragment
         android:id="@+id/filter_fragment"
         android:name="com.mrwinston.guitarburst.view.FilterFragment"

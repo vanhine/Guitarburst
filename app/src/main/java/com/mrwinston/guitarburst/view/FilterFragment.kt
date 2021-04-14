@@ -40,36 +40,53 @@ class FilterFragment : Fragment(R.layout.filter_fragment) {
     private fun setupDifficultySlider() {
         binding.difficultySlider.values = mutableListOf(1F, 5F)
         binding.difficultySlider.addOnChangeListener { slider, value, fromUser ->
-            var primaryColor = 0
-            var secondaryColor = 0
-            var labelString = ""
-            when (value.toInt()) {
-                in 1..5 -> { // Beginner
-                    primaryColor = getColor(R.color.easy_difficulty_primary)
-                    secondaryColor = getColor(R.color.easy_difficulty_secondary)
-                    labelString = "Beginner"
-                }
-                in 6..10 -> { // Intermediate
-                    primaryColor = getColor(R.color.indermediate_difficulty_primary)
-                    secondaryColor = getColor(R.color.intermediate_difficulty_secondary)
-                    labelString = "Intermediate"
-                }
-                in 11..15 -> { // Advanced
-                    primaryColor = getColor(R.color.advanced_difficulty_primary)
-                    secondaryColor = getColor(R.color.advanced_difficulty_secondary)
-                    labelString = "Advanced"
-                }
-                in 16..20 -> { // Professional
-                    primaryColor = getColor(R.color.professional_difficulty_primary)
-                    secondaryColor = getColor(R.color.professional_difficulty_secondary)
-                    labelString = "Professional"
-                }
-            }
+            val (primaryColor, secondaryColor) = getSliderColors(value)
             setSliderColors(slider, primaryColor, secondaryColor)
             slider.setLabelFormatter {
-                "$labelString\n$value"
+                val labelString = getLabelString(it)
+                "$labelString\n$it"
             }
         }
+    }
+
+    private fun getSliderColors(value: Float): Pair<Int, Int> {
+        when (value) {
+            in 1F..5F -> {
+                return Pair(
+                    getColor(R.color.easy_difficulty_primary),
+                    getColor(R.color.easy_difficulty_secondary)
+                )
+            }
+            in 6F..10F -> {
+                return Pair(
+                    getColor(R.color.indermediate_difficulty_primary),
+                    getColor(R.color.intermediate_difficulty_secondary)
+                )
+            }
+            in 11F..15F -> {
+                return Pair(
+                    getColor(R.color.advanced_difficulty_primary),
+                    getColor(R.color.advanced_difficulty_secondary)
+                )
+            }
+            in 16F..20F -> {
+                return Pair(
+                    getColor(R.color.professional_difficulty_primary),
+                    getColor(R.color.professional_difficulty_secondary)
+                )
+            }
+        }
+        return Pair(-1, -1)
+    }
+
+    private fun getLabelString(value: Float): String {
+        when (value) {
+            in 1F..5F -> return "Beginner"
+            in 6F..10F -> return "Intermediate"
+            in 11F..15F -> return "Advanced"
+            in 16F..20F -> return "Professional"
+        }
+        return "Unknown"
     }
 
     private fun setSliderColors(slider: RangeSlider, primaryColor: Int, secondaryColor: Int) {
