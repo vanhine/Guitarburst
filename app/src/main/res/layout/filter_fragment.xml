@@ -6,25 +6,26 @@
 
     <TextView
         android:id="@+id/filter_title"
+        style="@style/Heading"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="@string/filter_title_text"
-        style="@style/Heading"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/filter_title_text"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/era_title"
+        style="@style/FilterCategory"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:text="@string/filter_era_title"
-        style="@style/FilterCategory"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/filter_era_title"
+        app:layout_constraintEnd_toStartOf="@id/era_spinner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filter_title"
-        app:layout_constraintEnd_toStartOf="@id/era_spinner" />
+        app:layout_constraintTop_toBottomOf="@id/filter_title" />
 
     <Spinner
         android:id="@+id/era_spinner"
@@ -84,15 +85,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/search_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="365dp" />
+
     <Button
         android:id="@+id/search_button"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
         android:text="Search"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/difficulty_slider" />
+        app:layout_constraintTop_toTopOf="@+id/search_guideline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

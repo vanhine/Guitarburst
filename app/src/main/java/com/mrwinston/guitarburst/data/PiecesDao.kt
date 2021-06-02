@@ -3,6 +3,8 @@ package com.mrwinston.guitarburst.data
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.RawQuery
+import androidx.sqlite.db.SimpleSQLiteQuery
 import com.mrwinston.guitarburst.data.model.Piece
 
 @Dao
@@ -22,11 +24,6 @@ interface PiecesDao {
     @Query("select * from pieces_table where composer like '%' || :composer || '%'")
     suspend fun getByComposer(composer: String): List<Piece>
 
-    @Query("select * from pieces_table where era like '%' || :era || '%' AND duration like '%' || :length || '%' AND difficulty BETWEEN :minDifficulty AND :maxDifficulty")
-    suspend fun getByFilter(
-        era: String,
-        length: String,
-        minDifficulty: Int,
-        maxDifficulty: Int
-    ): List<Piece>
+    @RawQuery
+    suspend fun getByFilter(query: SimpleSQLiteQuery): List<Piece>
 }
