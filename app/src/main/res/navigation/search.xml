@@ -3,28 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/basicSearchFragment">
+    app:startDestination="@id/basic_search_fragment">
+
     <fragment
-        android:id="@+id/basicSearchFragment"
+        android:id="@+id/basic_search_fragment"
         android:name="com.mrwinston.guitarburst.view.BasicSearchFragment"
         android:label="BasicSearchFragment"
         tools:layout="@layout/basic_search_fragment">
         <action
             android:id="@+id/action_moveToSearchResults"
-            app:destination="@id/resultsFragment" />
+            app:destination="@id/results_fragment" />
+        <action
+            android:id="@+id/action_moveToFilterFragment"
+            app:destination="@id/filter_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/resultsFragment"
+        android:id="@+id/results_fragment"
         android:name="com.mrwinston.guitarburst.view.ResultsFragment"
         android:label="resultsFragment"
         tools:layout="@layout/results_fragment">
         <action
             android:id="@+id/action_moveToPieceInfoFragment"
-            app:destination="@id/pieceInfoFragment" />
+            app:destination="@id/piece_info_fragment" />
     </fragment>
     <fragment
-        android:id="@+id/pieceInfoFragment"
+        android:id="@+id/piece_info_fragment"
         android:name="com.mrwinston.guitarburst.view.PieceInfoFragment"
         android:label="pieceInfoFragment"
         tools:layout="@layout/piece_info_fragment" />
+    <fragment
+        android:id="@+id/filter_fragment"
+        android:name="com.mrwinston.guitarburst.view.FilterFragment"
+        android:label="filterFragment"
+        tools:layout="@layout/filter_fragment">
+        <action
+            android:id="@+id/action_moveToSearchResults"
+            app:destination="@id/results_fragment" />
+    </fragment>
 </navigation>

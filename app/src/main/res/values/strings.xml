@@ -6,5 +6,25 @@
     <string name="filter_menu_text">Filter</string>
     <string name="title">Title</string>
     <string name="composer">Composer</string>
-    <string name="era">Era</string>
+    <string name="filter_era_title">Era:</string>
+    <string name="difficulty">Difficulty:</string>
+    <string name="filter_title_text">Filters</string>
+    <string-array name="era_dropdown_array">
+        <item>Any</item>
+        <item>Modern</item>
+        <item>Romantic</item>
+        <item>Classical</item>
+        <item>Baroque</item>
+        <item>Renaissance</item>
+        <item>Traditional</item>
+    </string-array>
+    <string-array name="length_dropdown_array">
+        <item>Any</item>
+        <item>Short</item>
+        <item>Medium-short</item>
+        <item>Medium</item>
+        <item>Medium-long</item>
+        <item>Long</item>
+        <item>Very long</item>
+    </string-array>
 </resources>

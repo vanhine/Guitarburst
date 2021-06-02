@@ -1,7 +1,6 @@
 package com.mrwinston.guitarburst.viewmodel
 
 import android.app.Application
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -9,12 +8,16 @@ import androidx.lifecycle.viewModelScope
 import com.google.common.flogger.FluentLogger
 import com.mrwinston.guitarburst.data.PiecesRepository
 import com.mrwinston.guitarburst.data.model.Piece
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PiecesViewModel @ViewModelInject constructor(
+@HiltViewModel
+class PiecesViewModel @Inject constructor(
     private val logger: FluentLogger,
     private val piecesRepository: PiecesRepository,
-    application: Application): AndroidViewModel(application) {
+    application: Application
+) : AndroidViewModel(application) {
 
     private val _piecesToDisplay = MutableLiveData<List<Piece>>()
     val piecesToDisplay: LiveData<List<Piece>> = _piecesToDisplay
@@ -35,6 +38,25 @@ class PiecesViewModel @ViewModelInject constructor(
         _piecesToDisplay.value = pieces
         _isLoading.value = false
     }
+
+    fun filterPieces(filter: PiecesFilter) = viewModelScope.launch {
+        _isLoading.value = true
+        val pieces = piecesRepository.getByFilter(
+            filter.era,
+            filter.length,
+            filter.minDifficulty,
+            filter.maxDifficulty
+        )
+        _piecesToDisplay.value = pieces
+        _isLoading.value = false
+    }
+
+    data class PiecesFilter(
+        val era: String,
+        val length: String,
+        val minDifficulty: Int,
+        val maxDifficulty: Int
+    )
 
     enum class SearchCategory {
         TITLE, COMPOSER

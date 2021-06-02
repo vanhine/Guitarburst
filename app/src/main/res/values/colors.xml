@@ -3,6 +3,19 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="medium_emphasis">#99FFFFFF</color>
+    <color name="ripple_highlight">#0D6200EE</color>
+
+    <!-- Difficulty Slider Colors-->
+    <color name="easy_difficulty_primary">@color/green_500</color>
+    <color name="easy_difficulty_secondary">#614CAF50</color>
+    <color name="indermediate_difficulty_primary">@color/yellow_500</color>
+    <color name="intermediate_difficulty_secondary">#61FFEB3B</color>
+    <color name="advanced_difficulty_primary">@color/orange_500</color>
+    <color name="advanced_difficulty_secondary">#61FF9800</color>
+    <color name="professional_difficulty_primary">@color/red_500</color>
+    <color name="professional_difficulty_secondary">#61F44336</color>
+
     <!-- TODO(hine): Remove unused color resources -->
     <color name="red_50">#FFEBEE</color>
     <color name="red_100">#FFCDD2</color>
