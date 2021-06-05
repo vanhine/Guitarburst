@@ -9,9 +9,23 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Recuerdos de la Alhambra"
-        app:layout_constraintBottom_toTopOf="@id/composer"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/byTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="by"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <TextView
         android:id="@+id/composer"
@@ -19,30 +33,34 @@
         android:layout_height="0dp"
         android:text="Francisco Tarrega"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/byTextView" />
 
     <TextView
         android:id="@+id/difficulty_title"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Difficulty:"
+        style="@style/InfoSubTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/composer"
-        app:layout_constraintEnd_toStartOf="@id/difficulty" />
+        app:layout_constraintTop_toBottomOf="@id/composer" />
 
     <TextView
         android:id="@+id/difficulty"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="10"
+        style="@style/InfoItem"
         app:layout_constraintStart_toEndOf="@id/difficulty_title"
-        app:layout_constraintTop_toBottomOf="@id/composer" />
+        app:layout_constraintBottom_toBottomOf="@id/difficulty_title"
+        app:layout_constraintTop_toTopOf="@id/difficulty_title" />
 
     <TextView
         android:id="@+id/reading_title"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Reading Difficulty:"
+        style="@style/InfoSubTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/difficulty_title"
         app:layout_constraintEnd_toStartOf="@id/reading" />
@@ -52,14 +70,17 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="10"
+        style="@style/InfoItem"
         app:layout_constraintStart_toEndOf="@id/reading_title"
-        app:layout_constraintTop_toBottomOf="@id/difficulty" />
+        app:layout_constraintBottom_toBottomOf="@id/reading_title"
+        app:layout_constraintTop_toTopOf="@id/reading_title" />
 
     <TextView
         android:id="@+id/position_title"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Position:"
+        style="@style/InfoSubTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/reading_title"
         app:layout_constraintEnd_toStartOf="@id/position" />
@@ -69,14 +90,17 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="XI"
+        style="@style/InfoItem"
         app:layout_constraintStart_toEndOf="@id/position_title"
-        app:layout_constraintTop_toBottomOf="@id/reading" />
+        app:layout_constraintBottom_toBottomOf="@id/position_title"
+        app:layout_constraintTop_toTopOf="@id/position_title" />
 
     <TextView
         android:id="@+id/duration_title"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Duration:"
+        style="@style/InfoSubTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/position_title"
         app:layout_constraintEnd_toStartOf="@id/duration" />
@@ -86,14 +110,17 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="medium"
+        style="@style/InfoItem"
         app:layout_constraintStart_toEndOf="@id/duration_title"
-        app:layout_constraintTop_toBottomOf="@id/position" />
+        app:layout_constraintBottom_toBottomOf="@id/duration_title"
+        app:layout_constraintTop_toTopOf="@id/duration_title" />
 
     <TextView
         android:id="@+id/era_title"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Era:"
+        style="@style/InfoSubTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/duration_title"
         app:layout_constraintEnd_toStartOf="@id/era" />
@@ -103,57 +130,77 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Baroque"
+        style="@style/InfoItem"
         app:layout_constraintStart_toEndOf="@id/era_title"
-        app:layout_constraintTop_toBottomOf="@id/duration" />
+        app:layout_constraintBottom_toBottomOf="@id/era_title"
+        app:layout_constraintTop_toTopOf="@id/era_title" />
 
     <TextView
         android:id="@+id/source_title"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Source:"
+        style="@style/InfoSubTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/era_title"
         app:layout_constraintEnd_toStartOf="@id/source" />
 
     <TextView
         android:id="@+id/source"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        style="@style/InfoItem"
+        android:layout_width="0dp"
         android:text="Mel Bay Something Book"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/source_title"
         app:layout_constraintStart_toEndOf="@id/source_title"
-        app:layout_constraintTop_toBottomOf="@id/era" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toTopOf="@id/source_title" />
 
     <TextView
         android:id="@+id/publisher_title"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Publisher:"
+        style="@style/InfoSubTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/source_title"
         app:layout_constraintEnd_toStartOf="@id/publisher" />
 
     <TextView
         android:id="@+id/publisher"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        style="@style/InfoItem"
+        android:layout_width="0dp"
         android:text="Mel Bay"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@id/publisher_title"
         app:layout_constraintStart_toEndOf="@id/publisher_title"
-        app:layout_constraintTop_toBottomOf="@id/source" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintTop_toTopOf="@id/publisher_title" />
 
     <TextView
         android:id="@+id/notes_title"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="Notes:"
+        style="@style/InfoSubTitle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/publisher_title" />
 
     <TextView
         android:id="@+id/notes"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:text="Some Really long notes"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
         android:maxLines="10"
+        android:text="Some Really long notes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/notes_title" />
 
