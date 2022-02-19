@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.mrwinston.guitarburst.data.model.Piece
 
 @Database(entities = [Piece::class], version = 2)
-public abstract class PiecesDatabase: RoomDatabase() {
+abstract class PiecesDatabase : RoomDatabase() {
     abstract fun PiecesDao(): PiecesDao
 
     companion object {

@@ -4,6 +4,12 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlHighlight">@color/ripple_highlight</item>
+        <item name="android:navigationBarColor">
+            @android:color/transparent
+        </item>
+        <item name="android:statusBarColor">
+            @android:color/transparent
+        </item>
     </style>
 
     <style name="TitleList" parent="@android:style/TextAppearance">
