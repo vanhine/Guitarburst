@@ -27,12 +27,27 @@ class PiecesViewModel @Inject constructor(
     private val _piecesToDisplay = MutableLiveData<List<Piece>>()
     val piecesToDisplay: LiveData<List<Piece>> = _piecesToDisplay
 
-    private val _isLoading = MutableLiveData<Boolean>(false)
+    private val _favoritesToDisplay = MutableLiveData<List<Piece>>()
+    val favoritesToDisplay: LiveData<List<Piece>> = _favoritesToDisplay
+
+    private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
     var checkedCategory = SearchCategory.TITLE
 
     var resultPiece: Piece? = null
+
+    fun populateFavorites() = viewModelScope.launch {
+        _isLoading.value = true
+        val favorites = favoritesRepository.getFavorites()
+        val favoritePieces = mutableListOf<Piece>()
+        for (favorite in favorites) {
+            favoritePieces.add(piecesRepository.getByUid(favorite.fave_uid))
+        }
+        _favoritesToDisplay.value = favoritePieces
+        _isLoading.value = false
+
+    }
 
     fun searchPieces(text: String) = viewModelScope.launch {
         _isLoading.value = true

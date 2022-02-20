@@ -11,8 +11,8 @@
         android:icon="@drawable/filter_icon"
         android:title="@string/filter_menu_text" />
     <item
-        android:id="@+id/favorites"
-        android:enabled="false"
+        android:id="@+id/favorites_fragment"
+        android:enabled="true"
         android:icon="@drawable/favorites_icon"
         android:title="@string/favorites_search_menu_text" />
 </menu>

@@ -40,4 +40,9 @@
             android:id="@+id/action_moveToSearchResults"
             app:destination="@id/results_fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/favorites_fragment"
+        android:name="com.mrwinston.guitarburst.view.FavoritesFragment"
+        android:label="favoritesFragment"
+        tools:layout="@layout/favorites_fragment" />
 </navigation>

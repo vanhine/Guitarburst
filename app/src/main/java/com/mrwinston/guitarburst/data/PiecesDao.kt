@@ -26,4 +26,7 @@ interface PiecesDao {
 
     @RawQuery
     suspend fun getByFilter(query: SimpleSQLiteQuery): List<Piece>
+
+    @Query("select * from pieces_table where uid=:uid limit 1")
+    suspend fun getByUid(uid: Int): Piece
 }
