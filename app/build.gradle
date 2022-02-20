@@ -1,13 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion 32
 
     buildFeatures {
         viewBinding true
@@ -16,7 +14,7 @@ android {
     defaultConfig {
         applicationId "com.mrwinston.guitarburst"
         minSdkVersion 21
-        targetSdkVersion 29
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
 
@@ -117,6 +115,6 @@ dependencies {
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
     // Flogger
-    implementation "com.google.flogger:flogger:0.5.1"
-    implementation "com.google.flogger:flogger-system-backend:0.5.1"
+    implementation "com.google.flogger:flogger:0.7.2"
+    implementation "com.google.flogger:flogger-system-backend:0.7.2"
 }

@@ -4,17 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.mrwinston.guitarburst.data.model.Piece
+import com.mrwinston.guitarburst.data.model.Favorite
 
-@Database(entities = [Piece::class], version = 2)
-abstract class PiecesDatabase : RoomDatabase() {
-    abstract fun PiecesDao(): PiecesDao
+@Database(entities = [Favorite::class], version = 2)
+abstract class FavoritesDatabase : RoomDatabase() {
+    abstract fun FavoritesDao(): FavoritesDao
 
     companion object {
         @Volatile
-        private var INSTANCE: PiecesDatabase? = null
+        private var INSTANCE: FavoritesDatabase? = null
 
-        fun getDatabase(context: Context): PiecesDatabase {
+        fun getDatabase(context: Context): FavoritesDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -22,14 +22,14 @@ abstract class PiecesDatabase : RoomDatabase() {
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    PiecesDatabase::class.java, "pieces_database"
+                    FavoritesDatabase::class.java, "favorites_database"
                 )
                     .fallbackToDestructiveMigration()
-                    .createFromAsset("pieces.db")
                     .build()
                 INSTANCE = instance
                 return instance
             }
+
         }
     }
 }

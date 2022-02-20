@@ -26,6 +26,10 @@ class PiecesRepository @Inject constructor(application: Application) {
         return piecesDao.getByComposer(composer)
     }
 
+    suspend fun getByUid(uid: Int): Piece {
+        return piecesDao.getByUid(uid)
+    }
+
     suspend fun getByFilter(
         era: String,
         length: String,

@@ -12,18 +12,16 @@ import com.google.common.flogger.FluentLogger
 import com.mrwinston.guitarburst.R
 import com.mrwinston.guitarburst.adapters.PiecesListAdapter
 import com.mrwinston.guitarburst.data.model.Piece
-import com.mrwinston.guitarburst.databinding.ResultsFragmentBinding
+import com.mrwinston.guitarburst.databinding.FavoritesFragmentBinding
 import com.mrwinston.guitarburst.viewmodel.PiecesViewModel
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
-class ResultsFragment: Fragment(R.layout.results_fragment) {
+class FavoritesFragment : Fragment(R.layout.favorites_fragment) {
     private val piecesViewModel: PiecesViewModel by activityViewModels()
     private lateinit var resultsAdapter: PiecesListAdapter
-    private val resultPieces: List<Piece> = emptyList()
+    private val favoritePieces: List<Piece> = emptyList()
 
-    private var _binding: ResultsFragmentBinding? = null
-    // Only available between onCreateView and onDestroyView
+    private var _binding: FavoritesFragmentBinding? = null
+
     private val binding get() = _binding!!
 
     private val logger = FluentLogger.forEnclosingClass()
@@ -33,43 +31,44 @@ class ResultsFragment: Fragment(R.layout.results_fragment) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = ResultsFragmentBinding.inflate(inflater, container, false)
+        _binding = FavoritesFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initRecyclerView()
         val loadingObserver = Observer<Boolean> { isLoading ->
-            if(isLoading) {
+            if (isLoading) {
                 showSpinner()
             } else {
                 hideSpinner()
             }
         }
         piecesViewModel.isLoading.observe(viewLifecycleOwner, loadingObserver)
-        val resultsObserver = Observer<List<Piece>> { results ->
+        piecesViewModel.populateFavorites()
+        val favoritesObserver = Observer<List<Piece>> { results ->
             logger.atInfo().log("Observer setting results for ${results.size} pieces")
             resultsAdapter.setPieces(results)
         }
-        piecesViewModel.piecesToDisplay.observe(viewLifecycleOwner, resultsObserver)
+        piecesViewModel.favoritesToDisplay.observe(viewLifecycleOwner, favoritesObserver)
         super.onViewCreated(view, savedInstanceState)
     }
 
     private fun showSpinner() {
-        binding.resultsRecycler.visibility = View.INVISIBLE
+        binding.favoritesRecycler.visibility = View.INVISIBLE
         binding.progressBar.visibility = View.VISIBLE
     }
 
     private fun hideSpinner() {
         binding.progressBar.visibility = View.INVISIBLE
-        binding.resultsRecycler.visibility = View.VISIBLE
+        binding.favoritesRecycler.visibility = View.VISIBLE
     }
 
     private fun initRecyclerView() {
-        binding.resultsRecycler.apply {
+        binding.favoritesRecycler.apply {
             layoutManager = LinearLayoutManager(context)
             resultsAdapter =
-                PiecesListAdapter(context, resultPieces, piecesViewModel, viewLifecycleOwner)
+                PiecesListAdapter(context, favoritePieces, piecesViewModel, viewLifecycleOwner)
             setHasFixedSize(true)
             adapter = resultsAdapter
         }
