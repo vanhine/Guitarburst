@@ -6,9 +6,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.google.common.flogger.FluentLogger
+import com.mrwinston.guitarburst.data.FavoritesRepository
 import com.mrwinston.guitarburst.data.PiecesRepository
+import com.mrwinston.guitarburst.data.model.Favorite
 import com.mrwinston.guitarburst.data.model.Piece
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,6 +20,7 @@ import javax.inject.Inject
 class PiecesViewModel @Inject constructor(
     private val logger: FluentLogger,
     private val piecesRepository: PiecesRepository,
+    private val favoritesRepository: FavoritesRepository,
     application: Application
 ) : AndroidViewModel(application) {
 
@@ -49,6 +54,26 @@ class PiecesViewModel @Inject constructor(
         )
         _piecesToDisplay.value = pieces
         _isLoading.value = false
+    }
+
+    fun setFavoritePiece(fav_piece: Piece) = CoroutineScope(Dispatchers.IO).launch {
+        favoritesRepository.setFavorite(fav_piece)
+    }
+
+    fun removeFavoritePiece(piece: Piece) = viewModelScope.launch {
+        favoritesRepository.removeFavorite(piece)
+    }
+
+    fun isFavorite(piece: Piece): LiveData<Boolean> {
+        var favorites: List<Favorite>
+        var favPiece: Favorite?
+        val result: MutableLiveData<Boolean> = MutableLiveData(false)
+        viewModelScope.launch {
+            favorites = favoritesRepository.getFavorites()
+            favPiece = favoritesRepository.getFavorite(piece.uid)
+            result.postValue(favorites.contains(favPiece))
+        }
+        return result
     }
 
     data class PiecesFilter(

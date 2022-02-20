@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.common.flogger.FluentLogger
@@ -16,7 +18,8 @@ import com.mrwinston.guitarburst.viewmodel.PiecesViewModel
 class PiecesListAdapter(
     private val context: Context,
     private var pieces: List<Piece>,
-    private val piecesViewModel: PiecesViewModel
+    private val piecesViewModel: PiecesViewModel,
+    private val lifecycleOwner: LifecycleOwner
 ) :
     RecyclerView.Adapter<PiecesListAdapter.PieceViewHolder>() {
 
@@ -29,15 +32,24 @@ class PiecesListAdapter(
         private val composerView: TextView = itemView.findViewById(R.id.composer)
         private val favoriteButton: ImageButton = itemView.findViewById(R.id.favorite_button)
 
-        fun bind(piece: Piece) {
+        fun bind(piece: Piece, viewModel: PiecesViewModel, lifecycleOwner: LifecycleOwner) {
             favoriteButton.setImageDrawable(
                 ContextCompat.getDrawable(
                     context,
                     R.drawable.favorite_selector
                 )
             )
+            viewModel.isFavorite(piece).observe(lifecycleOwner, Observer {
+                favoriteButton.isSelected = it
+            })
             favoriteButton.setOnClickListener {
-                favoriteButton.isSelected = !favoriteButton.isSelected
+                if (!favoriteButton.isSelected) {
+                    favoriteButton.isSelected = true
+                    viewModel.setFavoritePiece(piece)
+                } else {
+                    favoriteButton.isSelected = false
+                    viewModel.removeFavoritePiece(piece)
+                }
             }
             titleView.text = piece.title
             composerView.text = piece.composer
@@ -63,6 +75,6 @@ class PiecesListAdapter(
             piecesViewModel.resultPiece = piece
             it.findNavController().navigate(R.id.action_moveToPieceInfoFragment)
         }
-        holder.bind(piece)
+        holder.bind(piece, piecesViewModel, lifecycleOwner)
     }
 }
