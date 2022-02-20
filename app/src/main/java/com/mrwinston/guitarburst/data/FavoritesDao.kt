@@ -8,10 +8,10 @@ interface FavoritesDao {
     @Insert(onConflict = OnConflictStrategy.ABORT)
     fun insert(favorite: Favorite)
 
-    @Query("Select * from favorites_table")
+    @Query("select * from favorites_table")
     suspend fun getFavorites(): List<Favorite>
 
-    @Query("Select * from favorites_table where fave_uid=:piece_uid")
+    @Query("select * from favorites_table where fave_uid=:piece_uid")
     suspend fun getFavorite(piece_uid: Int): Favorite?
 
     @Delete

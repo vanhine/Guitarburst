@@ -31,7 +31,6 @@ class PieceInfoFragment : Fragment(R.layout.piece_info_fragment) {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupTextViews()
         super.onViewCreated(view, savedInstanceState)

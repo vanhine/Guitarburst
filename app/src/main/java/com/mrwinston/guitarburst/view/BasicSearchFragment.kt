@@ -1,6 +1,8 @@
 package com.mrwinston.guitarburst.view
 
 import android.os.Bundle
+import android.util.Log
+import android.view.KeyEvent.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,16 +33,39 @@ class BasicSearchFragment : Fragment(R.layout.basic_search_fragment) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setupEditText(view)
         setupSearchButton(view)
         setupChipGroup()
         super.onViewCreated(view, savedInstanceState)
     }
 
+    private fun setupEditText(myView: View) {
+        binding.searchEditText.setOnKeyListener { view, i, keyEvent ->
+            Log.d("FUN", "Key" + keyEvent.action)
+            if (keyEvent.action == ACTION_DOWN) {
+                when (keyEvent.keyCode) {
+                    KEYCODE_DPAD_CENTER -> {
+                    }
+                    KEYCODE_ENTER -> {
+                        searchPieces(myView)
+                    }
+                }
+                true
+            } else {
+                false
+            }
+        }
+    }
+
+    private fun searchPieces(view: View) {
+        val searchText = binding.searchEditText.text.toString()
+        piecesViewModel.searchPieces(searchText)
+        view.findNavController().navigate(R.id.action_moveToSearchResults)
+    }
+
     private fun setupSearchButton(view: View) {
         binding.searchButton.setOnClickListener {
-            val searchText = binding.searchEditText.text.toString()
-            piecesViewModel.searchPieces(searchText)
-            view.findNavController().navigate(R.id.action_moveToSearchResults)
+            searchPieces(view)
         }
     }
 

@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.common.flogger.FluentLogger
 import com.mrwinston.guitarburst.data.FavoritesRepository
 import com.mrwinston.guitarburst.data.PiecesRepository
 import com.mrwinston.guitarburst.data.model.Favorite
@@ -18,7 +17,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PiecesViewModel @Inject constructor(
-    private val logger: FluentLogger,
     private val piecesRepository: PiecesRepository,
     private val favoritesRepository: FavoritesRepository,
     application: Application
