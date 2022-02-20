@@ -12,10 +12,10 @@ interface PiecesDao {
     @Insert
     fun insert(piece: Piece)
 
-    @Query("DELETE FROM pieces_table")
+    @Query("delete from pieces_table")
     fun deleteAllPieces()
 
-    @Query("Select * from pieces_table where title like '%' || :input || '%' OR composer like '%' || :input || '%'")
+    @Query("select * from pieces_table where title like '%' || :input || '%' or composer like '%' || :input || '%'")
     suspend fun getPieces(input: String): List<Piece>
 
     @Query("select * from pieces_table where title like '%' || :title || '%'")

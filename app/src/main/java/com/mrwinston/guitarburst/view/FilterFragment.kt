@@ -27,7 +27,7 @@ class FilterFragment : Fragment(R.layout.filter_fragment) {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FilterFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
