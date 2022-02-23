@@ -44,5 +44,9 @@
         android:id="@+id/favorites_fragment"
         android:name="com.mrwinston.guitarburst.view.FavoritesFragment"
         android:label="favoritesFragment"
-        tools:layout="@layout/favorites_fragment" />
+        tools:layout="@layout/favorites_fragment">
+        <action
+            android:id="@+id/action_moveToPieceInfoFragment"
+            app:destination="@id/piece_info_fragment" />
+    </fragment>
 </navigation>
