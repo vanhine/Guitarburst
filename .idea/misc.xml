@@ -9,6 +9,8 @@
         <entry key="app/src/main/res/layout/basic_search_fragment.xml" value="0.22418478260869565" />
         <entry key="app/src/main/res/layout/favorites_fragment.xml" value="0.22418478260869565" />
         <entry key="app/src/main/res/layout/filter_fragment.xml" value="0.5625" />
+        <entry key="app/src/main/res/layout/piece_info_fragment.xml" value="0.5625" />
+        <entry key="app/src/main/res/layout/piece_list_item.xml" value="0.5625" />
         <entry key="app/src/main/res/layout/results_fragment.xml" value="0.20288753799392098" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.31979166666666664" />
       </map>
