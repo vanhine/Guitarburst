@@ -25,7 +25,7 @@ abstract class PiecesDatabase : RoomDatabase() {
                     PiecesDatabase::class.java, "pieces_database"
                 )
                     .fallbackToDestructiveMigration()
-                    .createFromAsset("pieces.db")
+                    .createFromAsset("guitarburst.db")
                     .build()
                 INSTANCE = instance
                 return instance
