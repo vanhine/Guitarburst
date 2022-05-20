@@ -3,4 +3,12 @@ Guitarburst Android App
 
 https://www.guitarburst.com/ is a site which shows the difficulty of classical guitar pieces. This application is the mobile version of this site.
 
-This application is not associated with the original authors of guitarburst.com
+Screenshots:
+<p float="left">
+  <img src="docs/img/guitarburst-main.jpg" width="300" alt="Main search screen" />
+  <img src="docs/img/guitarburst-results.jpg" width="300" alt="Results screen" /> 
+</p>
+<p float="left">
+  <img src="docs/img/guitarburst-filter.jpg" width="300" alt="Fitler search screen" />
+  <img src="docs/img/guitarburst-details.jpg" width="300" alt="Details screen" />
+</p>
