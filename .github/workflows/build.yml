@@ -1,0 +1,68 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [ opened, labeled, unlabeled, synchronize ]
+
+env:
+  GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g -Dorg.gradle.daemon=false -Dkotlin.incremental=false"
+
+jobs:
+  android:
+    name: Android API ${{ matrix.api-level }} / JDK ${{ matrix.java-version }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        api-level:
+          - 23
+          - 32
+        java-version:
+          - 11
+          - 18
+
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v3.0.2
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@v1.0.4
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v3.0.4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper/
+            ~/.android/build-cache
+            ~/.android/avd/*
+            ~/.android/adb*
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: ${{ runner.os }}-gradle-
+
+      - name: Configure JDK ${{ matrix.java-version }}
+        uses: actions/setup-java@v3.3.0
+        with:
+          distribution: temurin
+          java-version: ${{ matrix.java-version }}
+
+      - name: Build Debug APKs
+        run: ./gradlew clean assembleDebug -s
+
+      - name: Run Debug Unit Tests
+        run: ./gradlew testDebug -s
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3.1.0
+        if: always()
+        with:
+          name: Guitarburst-${{ github.workflow }}-${{ github.run_id }}
+          path: |
+            app/build/outputs
+            app/build/reports
+            app/build/test-results
+          if-no-files-found: warn
