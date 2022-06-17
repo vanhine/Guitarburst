@@ -3,6 +3,8 @@ Guitarburst Android App
 
 https://www.guitarburst.com/ is a site which shows the difficulty of classical guitar pieces. This application is the mobile version of this site.
 
+[![Build](https://github.com/vanhine/Guitarburst/workflows/build/badge.svg)](https://github.com/vanhine/Guitarburst/actions)
+
 <a href="https://play.google.com/store/apps/details?id=com.mrwinston.guitarburst"><img src="docs/img/play-badge.png" alt="Get it on Google Play" width="200"/></a>
 
 Screenshots:
