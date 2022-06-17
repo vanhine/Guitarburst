@@ -50,6 +50,9 @@ jobs:
           distribution: temurin
           java-version: ${{ matrix.java-version }}
 
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+        
       - name: Build Debug APKs
         run: ./gradlew clean assembleDebug -s
 
