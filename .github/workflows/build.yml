@@ -3,7 +3,7 @@ name: build
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     types: [ opened, labeled, unlabeled, synchronize ]
 
@@ -19,53 +19,43 @@ jobs:
       fail-fast: false
       matrix:
         api-level:
-          - 23
-          - 32
+          - 33
         java-version:
           - 11
-          - 18
 
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v3.0.2
+        uses: actions/checkout@v3.4.0
 
       - name: Validate Gradle Wrapper
-        uses: gradle/wrapper-validation-action@v1.0.4
+        uses: gradle/wrapper-validation-action@v1.0.6
 
-      - name: Cache Gradle dependencies
-        uses: actions/cache@v3.0.4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper/
-            ~/.android/build-cache
-            ~/.android/avd/*
-            ~/.android/adb*
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: ${{ runner.os }}-gradle-
-
-      - name: Configure JDK ${{ matrix.java-version }}
-        uses: actions/setup-java@v3.3.0
+      - name: Setup Java ${{ matrix.java-version }}
+        uses: actions/setup-java@v3.10.0
         with:
           distribution: temurin
           java-version: ${{ matrix.java-version }}
+          cache: gradle
 
       - name: Make gradlew executable
-        run: chmod +x ./gradlew
+        run: chmod +x gradlew
         
-      - name: Build Debug APKs
-        run: ./gradlew clean assembleDebug -s
+      - name: Build Debug APK
+        uses: gradle/gradle-build-action@v2.4.0
+        with:
+          arguments: ./gradlew assembleDebug -s
 
       - name: Run Debug Unit Tests
-        run: ./gradlew testDebug -s
+        uses: gradle/gradle-build-action@v2.4.0
+        with:
+          arguments: ./gradlew testDebug -s
 
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v3.1.0
-        if: always()
+        if: github.repository == 'vanhine/Guitarburst' && github.ref == 'refs/heads/master'
+        uses: actions/upload-artifact@v3.1.2
         with:
           name: Guitarburst-${{ github.workflow }}-${{ github.run_id }}
           path: |
             app/build/outputs
             app/build/reports
             app/build/test-results
-          if-no-files-found: warn
